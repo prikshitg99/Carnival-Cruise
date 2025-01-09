@@ -1,4 +1,4 @@
-View Project Online: https://moviesupp-prikshitg99.netlify.app/
+View Project Online: https://carnival-cruise.netlify.app/
 
 # Getting Started with Create React App
 
