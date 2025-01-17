@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaUser } from 'react-icons/fa';
 import logo from '../carnival logo.png'; // Update the path to your logo image
+import { useAuth0 } from "@auth0/auth0-react";
 import '../App.css'; // Assuming you have a CSS file for styling
 
 const Navbar = () => {
+    const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
     return (
         <nav className="navbar">
             <div className="navbar-links-left">
@@ -25,9 +28,14 @@ const Navbar = () => {
                 <Link to="/search">
                     <FaSearch />
                 </Link>
-                <Link to="/login">
+                {/* <Link to="/login">
                     <FaUser /> Login
-                </Link>
+                </Link> */}
+                {isAuthenticated && <p>Welcome, {user.name} &nbsp;</p>}
+                {isAuthenticated ? 
+                <button className="LogOut-Button" onClick={() => logout({ returnTo: window.location.origin })}><FaUser /> Log Out
+                </button> : <button className="LogIn-Button" onClick={() => loginWithRedirect()}><FaUser /> Log In</button>}
+
             </div>
 
         </nav>
